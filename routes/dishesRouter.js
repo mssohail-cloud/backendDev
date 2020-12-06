@@ -11,7 +11,6 @@ dishRouter.use(bodyParser.json());
 if (dishRouter.route("/")) {
   dishRouter
     .route("/")
-
     .get((req, res, next) => {
       Dishes.find({})
         .then(
@@ -46,7 +45,7 @@ if (dishRouter.route("/")) {
           (resp) => {
             res.statusCode = 200;
             res.setHeader("Content-Type", "application/json");
-            res.json(res);
+            res.json(resp);
           },
           (err) => next(err)
         )
@@ -166,9 +165,9 @@ dishRouter
             }
             dish.save().then(
               (dish) => {
-                dish.statusCode = 200;
-                dish.setHeader("Content-type", "application/json");
-                dish.json(dish);
+                res.statusCode = 200;
+                res.setHeader("Content-type", "application/json");
+                res.json(dish);
               },
               (err) => next(err)
             );
@@ -239,9 +238,9 @@ dishRouter
               .save()
               .then(
                 (dish) => {
-                  dish.statusCode = 200;
-                  dish.setHeader("Content-Type", "application/json");
-                  dish.json(dish);
+                  res.statusCode = 200;
+                  res.setHeader("Content-Type", "application/json");
+                  res.json(dish);
                 },
                 (err) => next(err)
               )
